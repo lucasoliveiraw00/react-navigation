@@ -52,6 +52,7 @@ type Props = {
   isParentHeaderShown: boolean;
   isNextScreenTransparent: boolean;
   detachCurrentScreen: boolean;
+  useNativeDriver?: boolean;
 };
 
 const EPSILON = 0.1;
@@ -88,6 +89,7 @@ function CardContainer({
   safeAreaInsetRight,
   safeAreaInsetTop,
   scene,
+  useNativeDriver,
 }: Props) {
   const parentHeaderHeight = React.useContext(HeaderHeightContext);
 
@@ -244,6 +246,7 @@ function CardContainer({
       pointerEvents={active ? 'box-none' : pointerEvents}
       pageOverflowEnabled={headerMode !== 'float' && presentation !== 'modal'}
       headerDarkContent={headerDarkContent}
+      useNativeDriver={useNativeDriver}
       containerStyle={
         hasAbsoluteFloatHeader && headerMode !== 'screen'
           ? { marginTop: headerHeight }

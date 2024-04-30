@@ -31,6 +31,7 @@ type Props = StackNavigationConfig & {
   state: StackNavigationState<ParamListBase>;
   navigation: StackNavigationHelpers;
   descriptors: StackDescriptorMap;
+  useNativeDriver?: boolean;
 };
 
 type State = {

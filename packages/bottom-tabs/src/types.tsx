@@ -289,6 +289,13 @@ export type BottomTabNavigationConfig = {
    * Style object for the component wrapping the screen content.
    */
   sceneContainerStyle?: StyleProp<ViewStyle>;
+  /**
+   * Whether to use the native driver for animations. Enabling this can lead to improved
+   * performance as animations are offloaded to the native side of the app.
+   *
+   * Defaults to `true` if supported by the animation library being used.
+   */
+  useNativeDriver?: boolean;
 };
 
 export type BottomTabHeaderProps = {

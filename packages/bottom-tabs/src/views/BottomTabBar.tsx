@@ -27,13 +27,14 @@ import BottomTabItem from './BottomTabItem';
 
 type Props = BottomTabBarProps & {
   style?: Animated.WithAnimatedValue<StyleProp<ViewStyle>>;
+  useNativeDriver?: boolean;
 };
 
 const DEFAULT_TABBAR_HEIGHT = 49;
 const COMPACT_TABBAR_HEIGHT = 32;
 const DEFAULT_MAX_TAB_ITEM_WIDTH = 125;
 
-const useNativeDriver = Platform.OS !== 'web';
+const useNativeDriverDefault = Platform.OS !== 'web';
 
 type Options = {
   state: TabNavigationState<ParamListBase>;
@@ -131,6 +132,7 @@ export default function BottomTabBar({
   descriptors,
   insets,
   style,
+  useNativeDriver = useNativeDriverDefault,
 }: Props) {
   const { colors } = useTheme();
   const buildLink = useLinkBuilder();
@@ -183,7 +185,7 @@ export default function BottomTabBar({
 
       animation(visible, {
         toValue: 1,
-        useNativeDriver,
+        useNativeDriver: useNativeDriver,
         duration: 250,
         ...visibilityAnimationConfig?.show?.config,
       }).start(({ finished }) => {
@@ -201,7 +203,7 @@ export default function BottomTabBar({
 
       animation(visible, {
         toValue: 0,
-        useNativeDriver,
+        useNativeDriver: useNativeDriver,
         duration: 200,
         ...visibilityAnimationConfig?.hide?.config,
       }).start();
@@ -341,6 +343,7 @@ export default function BottomTabBar({
                 <BottomTabItem
                   route={route}
                   descriptor={descriptors[route.key]}
+                  useNativeDriver={useNativeDriver}
                   focused={focused}
                   horizontal={hasHorizontalLabels}
                   onPress={onPress}

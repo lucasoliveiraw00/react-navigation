@@ -29,6 +29,7 @@ type Props = BottomTabNavigationConfig & {
   state: TabNavigationState<ParamListBase>;
   navigation: BottomTabNavigationHelpers;
   descriptors: BottomTabDescriptorMap;
+  useNativeDriver?: boolean;
 };
 
 export default function BottomTabView(props: Props) {

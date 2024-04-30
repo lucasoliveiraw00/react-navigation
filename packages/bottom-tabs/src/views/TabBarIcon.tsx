@@ -25,6 +25,7 @@ type Props = {
     size: number;
   }) => React.ReactNode;
   style: StyleProp<ViewStyle>;
+  useNativeDriver?: boolean;
 };
 
 export default function TabBarIcon({
@@ -38,6 +39,7 @@ export default function TabBarIcon({
   inactiveTintColor,
   renderIcon,
   style,
+  useNativeDriver,
 }: Props) {
   const size = 25;
 
@@ -69,6 +71,7 @@ export default function TabBarIcon({
           badgeStyle,
         ]}
         size={(size * 3) / 4}
+        useNativeDriver={useNativeDriver}
       >
         {badge}
       </Badge>

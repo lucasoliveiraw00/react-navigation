@@ -20,6 +20,13 @@ type Props = {
    * Style object for the tab bar container.
    */
   style?: Animated.WithAnimatedValue<StyleProp<TextStyle>>;
+  /**
+   * Whether to use the native driver for animations. Enabling this can lead to improved
+   * performance as animations are offloaded to the native side of the app.
+   *
+   * Defaults to `true` if supported by the animation library being used.
+   */
+  useNativeDriver?: boolean;
 };
 
 export default function Badge({
@@ -27,6 +34,7 @@ export default function Badge({
   style,
   visible = true,
   size = 18,
+  useNativeDriver = true,
   ...rest
 }: Props) {
   const [opacity] = React.useState(() => new Animated.Value(visible ? 1 : 0));
@@ -42,7 +50,7 @@ export default function Badge({
     Animated.timing(opacity, {
       toValue: visible ? 1 : 0,
       duration: 150,
-      useNativeDriver: true,
+      useNativeDriver: useNativeDriver,
     }).start(({ finished }) => {
       if (finished && !visible) {
         setRendered(false);

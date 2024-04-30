@@ -71,6 +71,7 @@ type Props = {
   onGestureEnd: (props: { route: Route<string> }) => void;
   onGestureCancel: (props: { route: Route<string> }) => void;
   detachInactiveScreens?: boolean;
+  useNativeDriver?: boolean;
 };
 
 type State = {
@@ -490,6 +491,7 @@ export default class CardStack extends React.Component<Props, State> {
       detachInactiveScreens = Platform.OS === 'web' ||
         Platform.OS === 'android' ||
         Platform.OS === 'ios',
+      useNativeDriver = true,
     } = this.props;
 
     const { scenes, layout, gestures, headerHeights } = this.state;
@@ -680,6 +682,7 @@ export default class CardStack extends React.Component<Props, State> {
                   layout={layout}
                   gesture={gesture}
                   scene={scene}
+                  useNativeDriver={useNativeDriver}
                   safeAreaInsetTop={safeAreaInsetTop}
                   safeAreaInsetRight={safeAreaInsetRight}
                   safeAreaInsetBottom={safeAreaInsetBottom}

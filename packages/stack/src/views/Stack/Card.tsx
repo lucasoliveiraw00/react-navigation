@@ -58,6 +58,7 @@ type Props = ViewProps & {
   gestureEnabled: boolean;
   gestureResponseDistance?: number;
   gestureVelocityImpact: number;
+  useNativeDriver?: boolean;
   transitionSpec: {
     open: TransitionSpec;
     close: TransitionSpec;
@@ -201,7 +202,7 @@ export default class Card extends React.Component<Props> {
       ...spec.config,
       velocity,
       toValue,
-      useNativeDriver,
+      useNativeDriver: this.props.useNativeDriver ?? useNativeDriver,
       isInteraction: false,
     }).start(({ finished }) => {
       this.handleEndInteraction();
@@ -479,7 +480,7 @@ export default class Card extends React.Component<Props> {
                   : { translationX: gesture },
             },
           ],
-          { useNativeDriver }
+          { useNativeDriver: this.props.useNativeDriver ?? useNativeDriver }
         )
       : undefined;
 

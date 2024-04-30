@@ -44,6 +44,13 @@ type Props = {
         children: string;
       }) => React.ReactNode);
   /**
+   * Whether to use the native driver for animations. Enabling this can lead to improved
+   * performance as animations are offloaded to the native side of the app.
+   *
+   * Defaults to `true` if supported by the animation library being used.
+   */
+  useNativeDriver?: boolean;
+  /**
    * Icon to display for the tab.
    */
   icon: (props: {
@@ -133,6 +140,7 @@ export default function BottomTabBarItem({
   route,
   descriptor,
   label,
+  useNativeDriver,
   icon,
   badge,
   badgeStyle,
@@ -260,6 +268,7 @@ export default function BottomTabBarItem({
         horizontal={horizontal}
         badge={badge}
         badgeStyle={badgeStyle}
+        useNativeDriver={useNativeDriver}
         activeOpacity={activeOpacity}
         inactiveOpacity={inactiveOpacity}
         activeTintColor={activeTintColor}
